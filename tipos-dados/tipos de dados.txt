@@ -1,0 +1,97 @@
+- Cada dado armazenado em um banco de dados contém um tipo, como inteiro, texto, ponto flutuante, entre outros.
+
+- Os tipos suportados pelos bancos de dados não são padronizados e, por isso, é necessário verificar na sua documentação quais tipos são disponibilizados.
+
+- SQLite trata os dados armazenados de um modo um pouco diferente de outros bancos, nos quais temos um número limitado de tipos.
+
+No SQLite, cada valor armazenado no banco é de uma das classes a seguir:
+    - Null: Para valores nulos.
+
+    - Integer: Para valores que são números inteiros, com sinal.
+        
+    - Real: Para valores que são números de ponto flutuante.
+
+    - Text: Para valores que são texto (string).
+
+    - BLOB: Para armazenar valores exatamente como foram inseridos, ex.: bytes.
+
+
+- Apesar de parecer um número limitado de classes, quando comparado com outros bancos de dados, o SQLite suporta o conceito de afinidades de tipo para as colunas.
+
+- No SQLite, quando definimos uma coluna durante a criação de uma tabela, ao invés de especificar um tipo estático, dizemos qual a afinidade dela.
+- Isso nos permite armazenar diferentes tipos de dados em uma mesma coluna
+
+Afinidades disponíveis:
+    - Text: Coluna para armazenar dados das classes NULL, TEXT e BLOB.
+
+    - Numeric: Coluna para armazenar dados de qualquer uma das cinco classes.
+
+    - Integer: Similar ao NUMERIC, diferenciando apenas no processo de conversão de valores.
+
+    - Real: Similar ao NUMERIC, porém os valores inteiros são forçados a serem representados como ponto flutuante.
+
+    - None: Coluna sem preferência de armazenamento, não é realizada nenhuma conversão de valores.
+
+
+- afinidade também permite ao motor do SQLite fazer um mapeamento entre tipos não suportados e tipos suportados.
+- Por exemplo, o tipo VARCHAR(n), disponível no MySQL e PostgreSQL, é convertido para TEXT no SQLite.
+
+- Esse mapeamento nos permite definir atributos no CREATE TABLE com outros tipos, não suportados pelo SQLite.
+- Esses tipos são convertidos para tipos conhecidos utilizando afinidade.
+
+tabela de afinidades do SQLite
+
+-------------------------
+INT
+INTEGER
+TINYINT
+SMALLINT
+MEDIUMINT
+BIGINT
+UNSIGNED BIG INT
+INT2
+INT8
+
+=
+INTEGER
+
+-------------------------------
+CHARACTER(20)
+VARCHAR(255)
+VARYING CHARACTER(255)
+NCHAR(55)
+NATIVE CHARACTER(70)
+NVARCHAR(100)
+TEXT
+CLOB
+
+=
+TEXT
+
+---------------------------
+BLOB = BLOB
+
+-----------------------------
+REAL
+DOUBLE
+DOUBLE PRECISION
+FLOAT
+
+=
+REAL
+
+--------------------------------
+NUMERIC
+DECIMAL(10,5)
+BOOLEAN
+DATE
+DATETIME
+
+=
+NUMERIC
+
+---------------------------
+
+
+partir dessa tabela, mesmo utilizando o SQLite para desenvolvimento, podemos definir os atributos de nossas tabelas com os tipos que utilizaremos em ambiente de produção.
+

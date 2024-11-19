@@ -1,0 +1,85 @@
+- Ao utilizarmos um conector de banco de dados no nosso programa, adicionamos diversas possibilidades e também desafios ao desenvolvimento.
+- Enquanto podemos utilizar classes e métodos para executar tarefas e criar representações, temos que lidar com as possíveis exceções retornadas pelo conector.
+
+- Apenas o conector para SQLite está disponível nativamente no Python 3.7. Todos os demais precisam ser instalados.
+
+- Utilizaremos o banco de dados SQLite para demonstrar o desenvolvimento de aplicações Python para banco de dados
+    - o SQLite é um banco de dados completo, que permite a criação de tabelas, relacionamentos, índices, gatilhos e visões.
+    - tem suporte a subconsultas, transações, junções, pesquisa em texto (full text search), restrições de chave estrangeira, entre outras funcionalidades
+    - Porém, por não ter um servidor para seu gerenciamento, o SQLite não provê um acesso direto pela rede. 
+    - SQLite não tem suporte à autenticação, com usuários e permissões definidas
+    - Estamos falando aqui sobre usuários do banco de dados, que têm permissão para criar tabela, inserir registros etc.
+        Apesar do SQLite não ter suporte à autenticação, podemos e devemos implementar nosso próprio controle de acesso para nossa aplicação.
+
+
+-------------------------------------------------------------------
+
+Principais métodos dos conectores em Python
+
+Connect:
+    - Função global do conector para criar uma conexão com o banco de dados
+    - Retorna um objeto do tipo Connection.
+
+Connection: 
+    Classe utilizada para gerenciar todas as operações no banco de dados.
+
+    - Principais métodos:  
+        - commit: confirma todas as operações pendentes
+        - rollback: desfaz todas as operações pendentes.
+        - cursor: retorna um objeto do tipo Cursor
+        - close: encerra a conexão com o banco de dados.
+
+Cursor:
+    Classe utilizada para enviar os comandos ao banco de dados.
+
+    - Principais métodos:
+        - execute: prepara e executa a operação passada como parâmetro.
+        - fetchone: retorna a próxima linha encontrada por uma consulta.
+        - fetchall: retorna todas as linhas encontradas por uma consulta.
+
+
+
+utilização desses métodos segue basicamente o mesmo fluxo de trabalho para todas as aplicações que utilizam banco de dados. 
+    
+    Fluxo:
+
+    - Conectar:
+        - Criar uma conexão com o banco de dados utilizando a função connect.
+
+    - Executar:
+        - Utilizar a conexão para criar um cursor, que será utilizado para enviar comandos ao banco de dados.
+
+    - Enviar comandos: 
+        - Utilizar o cursor para enviar comandos ao banco de dados, por exemplo:
+            - criar tabelas
+            - inserir linhas
+            - selecionar linhas
+
+    - Confirmar:
+        - Efetivar as mudanças no banco de dados utilizando o método commit da conexão.
+
+    - Fechar:
+        - Fechar o cursor e a conexão.
+
+-------------------------------------------------------------------
+
+Principais exceções dos conectores em Python
+
+Error: 
+    - Classe base para as exceções. É a mais abrangente.
+
+IntegrityError:
+    - Exceção para tratar erros relacionados à integridade do banco de dados, como falha na checagem de chave estrangeira e falha na checagem de valores únicos. É uma subclasse de DatabaseError.
+
+OperationalError: 
+    - Exceção para tratar erros relacionados a operações no banco de dados, mas que não estão sob controle do programador, como desconexão inesperada. É uma subclasse de DatabaseError.
+
+DatabaseError:
+    - Exceção para tratar erros relacionados ao banco de dados. Também é uma exceção abrangente. É uma subclasse de Error.
+
+ProgrammingError:
+    - Exceção para tratar erros relacionados à programação, como sintaxe incorreta do comando SQL, tabela não encontrada etc. É uma subclasse de DatabaseError.
+
+NotSupportedError:
+    - Exceção para tratar erros relacionados a operações não suportadas pelo banco de dados, como chamar o método rollback em um banco de dados que não suporta transações. É uma subclasse de DatabaseError.
+
