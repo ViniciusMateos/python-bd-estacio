@@ -1,0 +1,52 @@
+Conectando a um banco de dados
+
+- Como o SQLite trabalha com arquivo e não tem suporte à autenticação, para se conectar a um banco de dados SQLite, basta chamar a função connect do módulo sqlite3, passando como argumento o caminho para o arquivo que contém o banco de dados.
+
+Sintaxe:
+    import sqlite3
+    conexao = sqlite3.connect('meu_banco.db')
+
+- Caso o arquivo não exista, ele será criado automaticamente!
+
+- Se quisermos criar um banco de dados em memória, que será criado para toda execução do programa, basta utilizar o comando conexao = sqlite3.connect(':memory:').
+
+---------------------------------------------------------------------------------------
+
+Criando tabelas
+
+Antes de colocarmos a mão na massa, vamos verificar o nosso modelo entidade relacionamento (ER) que utilizaremos para criar tabelas neste primeiro momento.
+
+    Pessoa:
+        - CPF, como chave primária
+        - nome
+        - nascimento, armazenar a data de nascimento
+        - óculos, indica se a pessoa usa óculos
+
+    Marca:
+        - id, como chave primária
+        - nome
+        - sigla
+    
+    Veículo:
+        - placa, como chave primária
+        - cor
+        - proprietário, que é uma referência à pessoa dona do veículo
+        - marca, referência à marca do veículo
+
+
+Para os relacionamentos do nosso modelo:
+    - uma pessoa pode ter zero, um ou mais veículos 
+    - um veículo só pode ter um proprietário.
+    - Uma marca pode estar em zero, um ou mais veículos 
+    - um veículo só pode ter uma marca.
+
+
+- Agora que já temos nosso modelo ER, precisamos definir os tipos de cada atributo das nossas entidades
+- Como estamos trabalhando com SQLite, precisamos ter em mente a tabela de afinidades do SQLite
+
+ - Observe pela tabela de afinidades, que os tipos DATE e BOOLEAN serão convertidos por afinidade para NUMERIC
+ -  os valores do tipo DATE serão da classe TEXT e os do tipo BOOLEAN da classe INTEGER, pois armazenaremos os valores True como 1 e False como 0.
+
+- codificação latin-1, muito utilizada no Brasil, utiliza um byte por caractere. Como a sigla da marca será composta por 2 caracteres, nosso atributo sigla terá tamanho 2 (CHAR(2) ou CHARACTER(2)).
+
+- Caso a referência da chave estrangeira seja feita a um atributo inexistente, será lançado um erro de programação: ProgrammingError

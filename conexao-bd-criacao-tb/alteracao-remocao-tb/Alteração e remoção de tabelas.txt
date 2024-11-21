@@ -1,0 +1,45 @@
+- como podemos fazer para adicionar um novo atributo e como remover uma tabela
+
+- Para alterar uma tabela e adicionar um novo atributo, precisamos utilizar o comando ALTER TABLE do SQL
+
+- adicionar mais um atributo à entidade Veículo
+- atributo se chama motor e corresponde à motorização do carro: 1.0, 1.4, 2.0 etc
+- Esse atributo deverá conter pontos flutuantes e, por isso, vamos defini-lo como do tipo REAL.
+
+- Para alterar a tabela Veículo e adicionar a coluna motor, utilizamos o seguinte comando SQL.
+
+ALTER TABLE Veiculo
+ADD motor REAL;
+
+
+- Em algumas situações, as colunas precisam seguir uma ordem específica
+- Um cenário comum é quando carregamos dados de uma planilha diretamente para um banco de dados, para fazer uma inserção em massa (bulk insert)
+- Nesses casos, as colunas da planilha devem estar na mesma ordem das colunas do banco.
+
+- Como nem todos os bancos de dados, incluindo o SQLite, dão suporte à criação de colunas em posição determinada, vamos precisar remover nossa tabela para recriá-la com os atributos na posição desejada.
+- Para o nosso exemplo, desejamos esta sequência:
+    Placa
+    Ano
+    Cor
+    Motor
+    Proprietário
+    Marca
+
+- No exemplo a seguir, vamos remover a tabela Veículo, utilizando o comando DROP TABLE do SQL e, posteriormente, vamos criá-la novamente com a sequência desejada.
+
+Para remover a tabela Veículo, utilizamos o seguinte comando SQL.
+    - DROP TABLE Veiculo;
+
+
+------------------------------------------------------------------------------------------
+
+- Algumas bibliotecas de acesso a banco de dados oferecem uma funcionalidade chamada mapeamento objeto-relacional, do inglês object-relational mapping (ORM).
+    - ORM (Object Relational Mapper) é uma mapeamento objeto-relacional, isto é, uma técnica de mapeamento objeto relacional que permite fazer uma relação dos objetos com os dados que eles representam.
+
+- Esse mapeamento permite associar classes definidas em Python com tabelas em banco de dados, em que cada objeto dessas classes corresponde a um registro da tabela.
+
+- Os comandos SQL de inserções e consultas são todos realizados por meio de métodos, não sendo necessário escrever o comando SQL em si.
+- Os ORM nos permitem trabalhar com um nível mais alto de abstração.
+
+
+
