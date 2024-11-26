@@ -1,0 +1,35 @@
+- inserção de dados com queries dinâmicas é uma técnica fundamental no desenvolvimento de aplicações flexíveis e seguras.
+- permite reutilizar comandos SQL, alterando apenas os valores a serem inseridos, o que facilita a manutenção do código e melhora a eficiência.
+
+-comum reutilizarmos uma mesma string para inserir diversos registros em uma tabela, alterando apenas os dados que serão adicionados.
+- Para realizar esse tipo de operação, o método execute, da classe Cursor, prevê a utilização de parâmetros de consulta, que é uma forma de criar comandos SQL dinamicamente.
+
+- De forma geral, as APIs sqlite3, psycopg2 e PyMySQL fazem a concatenação da string e dos parâmetros antes de enviá-los ao banco de dados.
+
+- concatenação da string é realizada de forma correta, evitando brechas de segurança, como SQL Injection, e convertendo os dados para os tipos e formatos esperados pelo banco de dados.
+- Como resultado final, temos um comando pronto para ser enviado ao banco de dados.
+
+- Para indicar que a string de um comando contém parâmetros que precisam ser substituídos antes da sua execução, utilizamos delimitadores
+- Esses delimitadores também estão previstos na PEP 249 e podem ser: “?”, “%s”, entre outros.
+
+- Na biblioteca do SQLite, utilizamos o delimitador “?”
+
+sintaxe:
+
+    comando = “INSERT INTO tabela1 (atributo1, atributo2) VALUES (?, ?);”
+
+- Esse comando indica que, ao ser chamado pelo método execute, devemos passar dois parâmetros, um para cada interrogação. 
+- Esses parâmetros precisam estar em um iterável, como em uma tupla ou lista
+
+exemplo:
+    cursor.execute(comando, (“Teste”, 123))
+
+- partir da string e da tupla, é montado o comando final, que é traduzido para:
+
+    “INSERT INTO tabela1 (atributo1, atributo2) VALUES (‘Teste’, 123);”
+
+- concatenação é feita da forma correta para o banco de dados em questão, aspas simples para textos e números sem aspas.
+
+O uso do delimitador de parâmetros, representado por uma interrogação (?), serve para indicar ao método execute que alguns parâmetros serão fornecidos, a fim de substituir essas interrogações por valores.
+
+- Nem todos os conectores utilizam o mesmo caractere como delimitador. Os conectores psycopg2, do PostgreSQL, e PyMySQL, do MySQL, utilizam o “%s”. É necessário ver a documentação de cada conector para verificar o delimitador correto.

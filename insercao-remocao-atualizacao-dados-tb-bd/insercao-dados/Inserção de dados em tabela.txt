@@ -1,0 +1,15 @@
+- A partir de comandos como INSERT INTO, desenvolvedores podem adicionar novos registros, atualizando e expandindo continuamente o banco de dados com informações relevantes
+- Assim, as aplicações podem manipular dados de maneira efetiva, suportando operações de entrada de dados de usuários, integração de sistemas e manutenção de registros atualizados.
+
+comando SQL para inserção desses dados é o seguinte:
+    INSERT INTO Pessoa (cpf, nome, nascimento, oculos)
+    VALUES (12345678900, 'João', '2000-01-31', 1);
+
+    
+- Observe que alteramos a formatação da data para se adequar ao padrão de alguns bancos de dados, como MySQL e PostgreSQL.
+- Para o SQLite será indiferente, pois o tipo DATE será convertido por afinidade para NUMERIC, que pode ser de qualquer classe. 
+- Na prática, será convertido para classe TEXT
+
+- Além disso, utilizamos o valor “1” para representar o booleano True.
+- Assim como o DATE, o BOOLEAN será convertido para NUMERIC, porém, na prática, será convertido para classe INTEGER.
+

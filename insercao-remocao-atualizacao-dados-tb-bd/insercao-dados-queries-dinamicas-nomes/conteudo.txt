@@ -1,0 +1,24 @@
+- Uma etapa essencial no desenvolvimento de aplicações eficazes é aprender a usar queries dinâmicas com nomes.
+- Utilizar argumentos nomeados torna o código mais flexível e claro, facilita a manutenção e diminui a chance de erros.
+
+- Além da utilização do caractere “?” como delimitador de parâmetros, o sqlite3 também possibilita a utilização de argumentos nomeados.
+- utilização de argumentos nomeados funciona de forma similar à chamada de funções utilizando os nomes dos parâmetros.
+- construção de queries dinâmicas, ao invés de passar uma tupla, devemos passar um dicionário para o método execute. Ele será utilizado para preencher corretamente os valores dos atributos.
+
+- A utilização de argumentos nomeados nos permite utilizar argumentos sem a necessidade de manter a ordem.
+
+sintaxe: 
+    
+    comando = INSERT INTO tabela1 (atributo1, atributo2) VALUES (:atrib1, :atrib2);
+
+- Esse comando indica que ao ser chamado pelo método execute, devemos passar um dicionário com duas chaves, sendo uma “atrib1” e outra “atrib2”.
+- Observe que há dois pontos (“:”) antes do argumento nomeado!
+
+chamada do método execute para esse comando:
+
+    cursor.execute(comando, {“atrib1”:“Teste”, “atrib2”: 123})
+
+partir da string e do dicionário, é montado o comando final, que é traduzido para:
+
+    INSERT INTO tabela1 (atributo1, atributo2) VALUES (‘Teste’, 123);
+

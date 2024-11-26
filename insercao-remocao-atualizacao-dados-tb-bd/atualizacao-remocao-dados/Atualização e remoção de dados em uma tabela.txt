@@ -1,0 +1,32 @@
+- Utilizando comandos SQL como UPDATE e DELETE, é possível modificar registros existentes e remover dados desnecessários ou obsoletos
+- garantindo que o banco de dados reflita com precisão o estado atual da aplicação
+
+
+Atualização de dados em uma tabela
+
+- Para atualizar um registro, utilizamos o comando SQL UPDATE. Aqui está sua sintaxe:
+
+    UPDATE tabela1
+    SET coluna1 = valor1, coluna2 = valor2...
+    WHERE [condição];
+
+- Assim como no comando INSERT, podemos montar o comando UPDATE de três formas
+- Uma string sem delimitadores, uma string com o delimitador “?” ou uma string com argumentos nomeados.
+
+- Também podemos utilizar os delimitadores na condição da cláusula WHERE.
+
+##############################################################################
+
+Remoção de dados de uma tabela
+
+- Para remover um registro, utilizamos o comando SQL DELETE
+
+sintaxe: 
+    DELETE FROM tabela1
+    WHERE [condição];
+
+- Assim como nos outros comandos, podemos montar o comando DELETE de três formas
+- Uma string sem delimitadores, uma string com o delimitador “?” ou uma string com argumentos nomeados. 
+- Todos para a condição da cláusula WHERE.
+
+
