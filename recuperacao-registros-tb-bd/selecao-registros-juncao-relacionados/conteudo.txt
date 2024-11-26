@@ -1,0 +1,11 @@
+E se quisermos substituir o id das marcas pelos seus respectivos nomes?
+
+Para isso, precisamos realizar uma junção das tabelas Veículo e Marca no comando SELECT.
+
+sintaxe:
+
+    SELECT tab1.col1, tab1.col2, tab2.col1… FROM tab1 JOIN tab2 ON tab1.colN = tab2.colM;
+
+- Primeiro, definimos quais colunas serão retornadas utilizando a sintaxe nome_tabela.nome_coluna, depois indicamos as tabelas que desejamos juntar e, por último, indicamos como alinhar os registros de cada tabela, ou seja, quais são os atributos que devem ser iguais (colN e colM).
+
+Vamos selecionar os atributos Placa, Ano, Cor, Motor e Proprietário do veículo e juntar com o atributo nome da tabela Marca.

@@ -1,0 +1,14 @@
+Seleção de registros de uma tabela
+
+- Para recuperar informações específicas e relevantes para uma aplicação, é fundamental saber selecionar registros em um banco de dados
+- Usando o comando SQL SELECT, desenvolvedores podem realizar consultas e filtrar dados com base em condições específicas, possibilitando a criação de relatórios e o fornecimento de dados necessários para uma aplicação dinâmica e responsiva.
+
+- Para selecionar e recuperar registros de um banco de dados, utilizamos o comando SQL SELECT. 
+
+sintaxe:
+
+    SELECT coluna1, coluna2, ... FROM tabela1
+    WHERE [condição];
+
+- podemos utilizar uma string sem delimitadores, uma string com o delimitador “?” ou uma string com argumentos nomeados para a condição da cláusula WHERE.
+

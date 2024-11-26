@@ -1,0 +1,11 @@
+Roteiro de prática
+
+Você foi contratado por uma livraria on-line para desenvolver um sistema de gerenciamento de pedidos capaz de armazenar informações sobre livros, clientes e pedidos.
+Sua tarefa é desenvolver um script em Python que se conecte a um banco de dados SQLite, crie as tabelas necessárias, insira dados iniciais utilizando parâmetros nomeados e demonstre a seleção de dados relacionados usando JOIN, para obter informações completas sobre os pedidos, incluindo detalhes dos livros e clientes.
+
+- Objetivo:
+
+Conecte-se a um banco de dados SQLite.
+Crie três tabelas: Livros, Clientes e Pedidos.
+Insira dados iniciais nessas tabelas usando parâmetros nomeados.
+Utilize JOIN para selecionar e exibir dados relacionados sobre os pedidos.

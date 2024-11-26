@@ -1,0 +1,2 @@
+Vamos atribuir ao atributo Marca, do veículo, um objeto do tipo Marca.
+Dessa forma, vamos ter acesso a todos os atributos da marca de um veículo.

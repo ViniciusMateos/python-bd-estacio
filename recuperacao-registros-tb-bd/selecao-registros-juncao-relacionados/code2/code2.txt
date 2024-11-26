@@ -1,0 +1,4 @@
+Seleção de registros relacionados
+
+- recuperar todas as pessoas, com seus respectivos veículos e marcas.
+- Para isso, vamos transformar o script anterior em uma função, permitindo sua reutilização no nosso script final
